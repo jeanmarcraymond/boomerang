@@ -1,10 +1,15 @@
+var create = require ('./create.js');
+var view = require ('./view.js');
+
 module.exports = function(app, passport) {
+
 
     // =====================================
     // HOME PAGE (with login links) ========
     // =====================================
     app.get('/', function(req, res) {
         res.render('index.ejs'); // load the index.ejs file
+
     });
 
     // =====================================
@@ -19,7 +24,7 @@ module.exports = function(app, passport) {
 
     // process the login form
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/profile', // redirect to the secure profile section
+        successRedirect : '/create', // redirect to the secure profile section
         failureRedirect : '/login', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
@@ -40,6 +45,55 @@ module.exports = function(app, passport) {
         failureRedirect : '/signup', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
+
+    // =====================================
+    // Create SECTION =====================
+    // =====================================
+    app.get('/create', isLoggedIn, function(req, res) {
+
+        var boomerangs = view.execute(req, req.user, function(data){
+
+            res.render('create.ejs', {
+                message: req.flash('createMessage'),
+                user : req.user, // get the user out of session and pass to template
+                boomerangs : data
+            });
+        });
+
+    });
+
+
+    app.post('/create', isLoggedIn, function(req, res) {
+
+        create.execute(req,req.user, function(newBoomerang){
+
+            view.execute(req, req.user, function(data){
+
+                res.render('create.ejs', {
+                    message: req.flash('createMessage'),
+                    user : req.user, // get the user out of session and pass to template
+                    boomerangs : data
+                });
+            });
+        });
+    });
+
+    // =====================================
+    // View SECTION =====================
+    // =====================================
+    app.get('/view', isLoggedIn, function(req, res) {
+
+        view.execute(req, req.user, function(data){
+
+            res.render('view.ejs', {
+                message: req.flash('viewMessage'),
+                user : req.user, // get the user out of session and pass to template
+                boomerangs : data
+            });
+
+        });
+
+    });
 
     // =====================================
     // PROFILE SECTION =====================
