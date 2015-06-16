@@ -3,6 +3,10 @@
     .container {
         width : 800px;
     }
+
+    .btn {
+        font-size : 28px;
+    }
 }
 
 @media only screen and (max-width: 768px) {
@@ -10,11 +14,18 @@
         width : 500px;
     }
 
+    .btn {
+        font-size : 28px;
+    }
 }
 
 @media only screen and (max-width: 506px) {
 
     .container {
         width : 300px;
+    }
+
+    .btn {
+        font-size : 28px;
     }
 }
