@@ -7,11 +7,12 @@ module.exports = {
 
         var newBoomerang = new Boomerang();
         var boomerangText = request.param('boomerang');
-        var tags = null;
+        var tags;
 
         newBoomerang.users.creator = user._id;
         newBoomerang.description = boomerangText;
         newBoomerang.created = Date.now();
+        newBoomerang.answered = false;
 
         tags = Tag.parse(boomerangText);
 

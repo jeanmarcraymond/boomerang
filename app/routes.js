@@ -1,5 +1,6 @@
 var create = require ('./create.js');
 var view = require ('./view.js');
+var next = require ('./next.js');
 
 module.exports = function(app, passport) {
 
@@ -79,16 +80,16 @@ module.exports = function(app, passport) {
     });
 
     // =====================================
-    // View SECTION =====================
+    // next SECTION =====================
     // =====================================
-    app.get('/view', isLoggedIn, function(req, res) {
+    app.get('/next', isLoggedIn, function(req, res) {
 
-        view.execute(req, req.user, function(data){
+        next.execute(req, req.user, function(data){
 
-            res.render('view.ejs', {
+            res.render('next.ejs', {
                 message: req.flash('viewMessage'),
                 user : req.user, // get the user out of session and pass to template
-                boomerangs : data
+                boomerang : data
             });
 
         });

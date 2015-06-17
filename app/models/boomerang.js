@@ -8,6 +8,7 @@ var boomerangSchema = mongoose.Schema({
     response         : String,
     response_tags    : [],
     created          : Date,
+    answered         : Boolean,
 
     users            : {
         creator: [mongoose.Schema.ObjectId],
