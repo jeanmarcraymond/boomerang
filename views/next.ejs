@@ -2,9 +2,10 @@
 <html>
 <head>
     <title>Boomerang</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+    <meta name="viewport" content="width=320">
+
     <link rel="stylesheet" href="/build/media-queries.css">
+    <link rel="stylesheet" href="/build/boomerang.css">
     <style>
         body        { padding-top:80px; }
     </style>
@@ -14,8 +15,8 @@
 
     <div class="col-sm-6 col-sm-offset-3">
 
-        <h1>View</h1>
-
+        <a href="/create" class="btn btn-default"><span class="fa"></span>create</a>
+        <h1></span>Browse:</h1>
         <!-- show any messages that come back with authentication -->
         <% if (message.length > 0) { %>
         <div class="alert alert-danger"><%= message %></div>
@@ -43,6 +44,7 @@
         </div>
 
     </div>
+
 
 </div>
 </body>
