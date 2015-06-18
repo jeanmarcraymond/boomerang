@@ -5,6 +5,7 @@ var bcrypt   = require('bcrypt-nodejs');
 var userSchema = mongoose.Schema({
 
     user_tags        : [],
+    selected         : mongoose.Schema.ObjectId,
 
     local            : {
         email        : String,

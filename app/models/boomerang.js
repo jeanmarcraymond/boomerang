@@ -11,8 +11,8 @@ var boomerangSchema = mongoose.Schema({
     answered         : Boolean,
 
     users            : {
-        creator: [mongoose.Schema.ObjectId],
-        responder: [mongoose.Schema.ObjectId]
+        creator: mongoose.Schema.ObjectId,
+        responder: mongoose.Schema.ObjectId
     }
 });
 
