@@ -16,6 +16,5 @@ module.exports = {
 
             return done(boomerang);
         });
-
     }
 }

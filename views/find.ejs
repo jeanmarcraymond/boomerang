@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+    <title>Boomerang</title>
+    <meta name="viewport" content="width=320">
+
+    <link rel="stylesheet" href="/build/boomerang.css">
+    <link rel="stylesheet" href="/build/media-queries.css">
+    <style>
+        body        { padding-top:80px; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="col-sm-6 col-sm-offset-3">
+        <p>find</p>
+        <!-- show any messages that come back with authentication -->
+        <% if (message.length > 0) { %>
+        <div class="alert alert-danger"><%= message %></div>
+        <% } %>
+
+        <!-- Create FORM -->
+        <form method="post">
+            <div class="form-group">
+
+                search: <input type="text" name="search"/>
+                <input type="checkbox" name="mine"/> Mine
+
+            </div>
+
+        </form>
+
+        <% if (boomerangs) { %>
+
+        <div class="col-sm-6 col-sm-offset-3">
+
+            <%
+                boomerangs = boomerangs.sort(function(a,b){
+
+                    return b.created - a.created;
+                });
+
+            for(var i=0; i < boomerangs.length; i++) {
+            %>
+
+            <div class="row">
+
+                <div class="col-sm-6">
+                    <div class="well">
+
+                        <span>
+                            <%= boomerangs[i].description  %> |
+                        </span>
+                        <span>
+                           <% if (boomerangs[i].response ){ %>
+                                <%= boomerangs[i].response  %>
+                            <% } %>
+                        </span>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <% } %>
+
+        </div>
+
+        <% }%>
+
+        <hr>
+
+    </div>
+    <div class="col-sm-6 col-sm-offset-3">
+        <form method="get">
+            <button type="submit" formaction="/create" class="btn">ask</button>
+            <button type="submit" formaction="/next" class="btn">answer</button>
+        </form>
+    </div>
+
+
+</div>
+
+</body>
+</html>

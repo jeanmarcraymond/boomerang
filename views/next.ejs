@@ -14,9 +14,7 @@
 <div class="container">
 
     <div class="col-sm-6 col-sm-offset-3">
-
-        <a href="/create" class="btn btn-default"><span class="fa"></span>create</a>
-        <h1></span>Browse:</h1>
+        <p>answer</p>
         <!-- show any messages that come back with authentication -->
         <% if (message.length > 0) { %>
         <div class="alert alert-danger"><%= message %></div>
@@ -51,8 +49,13 @@
                         <p>
                             <%= boomerang.description  %><br>
                         </p>
-                        <a href="/select?boomerangId=<%= boomerang._id %>" class="btn btn-default"><span class="fa"></span>select</a>
-                        <a href="/next" class="btn btn-default"><span class="fa"></span>next</a>
+                        <form method="post">
+                            <input type="hidden" name="boomerangId" value="<%= boomerang._id %>"/>
+                            <button type="submit" formaction="/select" class="btn">select</button>
+                        </form>
+                        <form method="get">
+                            <button type="submit" formaction="/next" class="btn">next</button>
+                        </form>
                     <% } else { %>
                           <p>
                             no more<br>
@@ -64,8 +67,16 @@
 
         </div>
 
+        <hr/>
+
     </div>
 
+    <div class="col-sm-6 col-sm-offset-3">
+        <form method="get">
+            <button type="submit" formaction="/find" class="btn">find</button>
+            <button type="submit" formaction="/create" class="btn">ask</button>
+        </form>
+    </div>
 
 </div>
 </body>

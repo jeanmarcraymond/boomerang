@@ -3,7 +3,8 @@ var view = require ('./view.js');
 var next = require ('./next.js');
 var select = require ('./select.js');
 var toss = require ('./toss.js');
-var complete = require ('./complete.js')
+var complete = require ('./complete.js');
+var find = require ('./find.js');
 
 module.exports = function(app, passport) {
 
@@ -71,14 +72,10 @@ module.exports = function(app, passport) {
 
         create.execute(req,req.user, function(newBoomerang){
 
-            view.execute(req, req.user, function(data){
-
                 res.render('create.ejs', {
                     message: req.flash('createMessage'),
                     user : req.user, // get the user out of session and pass to template
-                    boomerangs : data
                 });
-            });
         });
     });
 
@@ -102,7 +99,7 @@ module.exports = function(app, passport) {
     // =====================================
     // select SECTION =====================
     // =====================================
-    app.get('/select', isLoggedIn, function(req, res) {
+    app.post('/select', isLoggedIn, function(req, res) {
 
         select.execute(req, req.user, function(data){
 
@@ -153,15 +150,31 @@ module.exports = function(app, passport) {
         });
 
     });
+
     // =====================================
-    // PROFILE SECTION =====================
+    // find SECTION =====================
     // =====================================
-    // we will want this protected so you have to be logged in to visit
-    // we will use route middleware to verify this (the isLoggedIn function)
-    app.get('/profile', isLoggedIn, function(req, res) {
-        res.render('profile.ejs', {
-            user : req.user // get the user out of session and pass to template
+    app.get('/find', isLoggedIn, function(req, res) {
+
+            res.render('find.ejs', {
+                message: req.flash('viewMessage'),
+                user : req.user,
+                boomerangs: undefined
+            });
+
+
+    });
+
+    app.post('/find', isLoggedIn, function(req, res) {
+
+        find.execute(req, req.user, function(data) {
+            res.render('find.ejs', {
+                message: req.flash('viewMessage'),
+                user: req.user,
+                boomerangs: data
+            });
         });
+
     });
 
     // =====================================

@@ -14,10 +14,7 @@
 <div class="container">
 
     <div class="col-sm-6 col-sm-offset-3">
-
-        <a href="/next" class="btn btn-default"><span class="fa"></span>browse</a>
-        <h1></span>Create:</h1>
-
+        <p>ask</p>
         <!-- show any messages that come back with authentication -->
         <% if (message.length > 0) { %>
         <div class="alert alert-danger"><%= message %></div>
@@ -38,32 +35,10 @@
 
     </div>
     <div class="col-sm-6 col-sm-offset-3">
-
-        <%
-        boomerangs = boomerangs.sort(function(a,b){
-
-            return b.created - a.created;
-        });
-
-        for(var i=0; i < boomerangs.length; i++) {
-        %>
-
-        <div class="row">
-
-            <div class="col-sm-6">
-                <div class="well">
-
-                    <p>
-                        <%= boomerangs[i].description  %><br>
-                    </p>
-
-                </div>
-            </div>
-
-        </div>
-
-        <% } %>
-
+        <form method="get">
+            <button type="submit" formaction="/find" class="btn">find</button>
+            <button type="submit" formaction="/next" class="btn">answer</button>
+        </form>
     </div>
 
 
