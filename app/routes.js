@@ -2,6 +2,7 @@ var create = require ('./create.js');
 var view = require ('./view.js');
 var next = require ('./next.js');
 var select = require ('./select.js');
+var toss = require ('./toss.js');
 
 module.exports = function(app, passport) {
 
@@ -98,7 +99,7 @@ module.exports = function(app, passport) {
     });
 
     // =====================================
-    // next SECTION =====================
+    // select SECTION =====================
     // =====================================
     app.get('/select', isLoggedIn, function(req, res) {
 
@@ -114,6 +115,22 @@ module.exports = function(app, passport) {
 
     });
 
+    // =====================================
+    // toss SECTION =====================
+    // =====================================
+    app.post('/toss', isLoggedIn, function(req, res) {
+
+        toss.execute(req, req.user, function(data){
+
+            res.render('next.ejs', {
+                message: req.flash('viewMessage'),
+                user : req.user, // get the user out of session and pass to template
+                boomerang : data
+            });
+
+        });
+
+    });
     // =====================================
     // PROFILE SECTION =====================
     // =====================================

@@ -26,7 +26,25 @@
 
             <div class="col-sm-6">
                 <div class="well">
-                    <% if (boomerang) {%>
+                    <%if (boomerang && boomerang.users.responder && boomerang.users.responder.toString() == user._id.toString()){%>
+
+                    <p>
+                        <%= boomerang.description  %><br>
+
+                    </p>
+
+                    <form method="post">
+                        <div class="form-group">
+                            <textarea rows="3" class="form-control" name="response">
+                            </textarea>
+                        </div>
+
+                        <button type="submit" formaction="/complete" class="btn">complete</button>
+                        <button type="submit" formaction="/toss" class="btn">toss</button>
+                    </form>
+
+
+                    <% } else if (boomerang) {%>
                         <p>
                             <%= boomerang.description  %><br>
                         </p>

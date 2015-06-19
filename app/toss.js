@@ -7,11 +7,9 @@ module.exports = {
 
     execute: function (request, user, done) {
 
-        var selectedId = request.param('boomerangId');
+        Boomerang.findOne({'users.responder' : user._id}, function (err, boomerang) {
 
-        Boomerang.findOne({'_id' : selectedId}, function (err, boomerang){
-
-            boomerang.users.responder = user._id;
+            boomerang.users.responder = undefined;
             boomerang.save();
 
             return done(boomerang);

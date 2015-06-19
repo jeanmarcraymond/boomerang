@@ -22,27 +22,35 @@ module.exports = {
 
     execute : function(request, user, done){
 
-        var boomerangs = boomerangUserCache.get(user._id);
+        Boomerang.findOne({'users.responder' : user._id}, function (err, boomerang) {
 
-        if (boomerangs){
-            var boomerang = boomerangs.pop();
-
-            if (boomerang){
+            if (boomerang) {
                 return done(boomerang);
             }
-        }
 
-        Boomerang.find({ 'answered' : {$ne: true}  }, function(err, boomerangs) {
+            var boomerangs = boomerangUserCache.get(user._id);
 
-            // if there are any errors, return the error
-            if (err)
-                return done(err);
+            if (boomerangs){
+                var boomerang = boomerangs.pop();
 
-            boomerangUserCache.set(user._id, boomerangs);
+                if (boomerang){
+                    return done(boomerang);
+                }
+            }
 
-            return done(boomerangs.pop());
+            Boomerang.find({ 'answered' : {$ne: true}  }, function(err, boomerangs) {
 
+                // if there are any errors, return the error
+                if (err)
+                    return done(err);
+
+                boomerangUserCache.set(user._id, boomerangs);
+
+                return done(boomerangs.pop());
+
+            });
         });
+
     }
 
 }
