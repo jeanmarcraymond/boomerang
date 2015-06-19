@@ -3,6 +3,7 @@ var view = require ('./view.js');
 var next = require ('./next.js');
 var select = require ('./select.js');
 var toss = require ('./toss.js');
+var complete = require ('./complete.js')
 
 module.exports = function(app, passport) {
 
@@ -109,6 +110,27 @@ module.exports = function(app, passport) {
                 message: req.flash('viewMessage'),
                 user : req.user, // get the user out of session and pass to template
                 boomerang : data
+            });
+
+        });
+
+    });
+
+    // =====================================
+    // complete SECTION =====================
+    // =====================================
+    app.post('/complete', isLoggedIn, function(req, res) {
+
+        complete.execute(req, req.user, function(data){
+
+            next.execute(req, req.user, function(data){
+
+                res.render('next.ejs', {
+                    message: req.flash('viewMessage'),
+                    user : req.user, // get the user out of session and pass to template
+                    boomerang : data
+                });
+
             });
 
         });

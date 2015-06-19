@@ -4,9 +4,9 @@ var mongoose = require('mongoose');
 var boomerangSchema = mongoose.Schema({
 
     description      : String,
-    description_tags : [],
+    description_tags : [String],
     response         : String,
-    response_tags    : [],
+    response_tags    : [String],
     created          : Date,
     answered         : Boolean,
 

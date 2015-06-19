@@ -34,10 +34,13 @@
                     </p>
 
                     <form method="post">
+
                         <div class="form-group">
                             <textarea rows="3" class="form-control" name="response">
                             </textarea>
                         </div>
+
+                        <input type="hidden" name="boomerangId" value="<%= boomerang._id %>"/>
 
                         <button type="submit" formaction="/complete" class="btn">complete</button>
                         <button type="submit" formaction="/toss" class="btn">toss</button>

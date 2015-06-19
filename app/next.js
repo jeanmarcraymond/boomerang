@@ -22,7 +22,7 @@ module.exports = {
 
     execute : function(request, user, done){
 
-        Boomerang.findOne({'users.responder' : user._id}, function (err, boomerang) {
+        Boomerang.findOne({'users.responder' : user._id, 'answered' : false}, function (err, boomerang) {
 
             if (boomerang) {
                 return done(boomerang);
