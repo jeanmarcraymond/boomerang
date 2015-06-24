@@ -10,11 +10,11 @@ module.exports = {
         var tags;
 
         newBoomerang.users.creator = user._id;
-        newBoomerang.description = boomerangText;
+        newBoomerang.description = boomerangText.trim();
         newBoomerang.created = Date.now();
         newBoomerang.answered = false;
 
-        tags = Tag.parse(boomerangText);
+        tags = Tag.parse(newBoomerang.description);
 
         if (tags){
             newBoomerang.description_tags = tags;

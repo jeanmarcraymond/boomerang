@@ -25,12 +25,10 @@
         <!-- Create FORM -->
         <form method="post">
             <div class="form-group">
-
-                search: <input type="text" name="search"/>
+                <input type="text" name="search"/>
                 <input type="checkbox" name="mine"/> Mine
 
             </div>
-            <button type="submit" class="btn">find</button>
         </form>
 
         <% if (boomerangs) { %>
@@ -51,14 +49,18 @@
                 <div class="col-sm-6">
                     <div class="well">
 
-                        <span>
-                            <%= boomerangs[i].description  %> |
-                        </span>
-                        <span>
+                        <div>
+                            <a href="/get?boomerangId=<%=boomerangs[i]._id%>">
+                                <%= boomerangs[i].description.substring(0,50)  %>
+                                <% if (boomerangs[i].description.length > 50) {%>... <%} %>
+                            </a>
+                        </div>
+                        <div>
                            <% if (boomerangs[i].response ){ %>
-                                <%= boomerangs[i].response  %>
+                                <%= boomerangs[i].response.substring(0,20)  %>
+                                 <% if (boomerangs[i].response.length > 20) {%>...<%} %>
                             <% } %>
-                        </span>
+                        </div>
 
                     </div>
                 </div>

@@ -5,6 +5,7 @@ var select = require ('./select.js');
 var toss = require ('./toss.js');
 var complete = require ('./complete.js');
 var find = require ('./find.js');
+var getSelected = require('./get.js')
 
 module.exports = function(app, passport) {
 
@@ -79,6 +80,24 @@ module.exports = function(app, passport) {
                 });
         });
     });
+
+    // =====================================
+    // get SECTION =====================
+    // =====================================
+    app.get('/get', isLoggedIn, function(req, res) {
+
+        getSelected.execute(req, req.user, function(data){
+
+            res.render('view.ejs', {
+                message: req.flash('viewMessage'),
+                user : req.user, // get the user out of session and pass to template
+                boomerang : data
+            });
+
+        });
+
+    });
+
 
     // =====================================
     // next SECTION =====================

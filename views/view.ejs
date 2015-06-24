@@ -16,34 +16,22 @@
 <body>
 <div class="container">
 
-    <div class="col-sm-6 col-sm-offset-3">
-        <!-- show any messages that come back with authentication -->
-        <% if (message.length > 0) { %>
-        <div class="alert alert-danger"><%= message %></div>
-        <% } %>
+    <!-- show any messages that come back with authentication -->
+    <% if (message.length > 0) { %>
+    <div class="alert alert-danger"><%= message %></div>
+    <% } %>
 
-        <!-- Create FORM -->
-        <form action="/create" method="post">
-            <div class="form-group">
-
-                <textarea rows="3" class="form-control" name="boomerang"></textarea>
-            </div>
-
-            <button type="submit" class="btn select-btn"></button>
-        </form>
-
-        <hr>
-
-    </div>
+  <div class="well">
+        <p>
+            <%= boomerang.description  %><br>
+        </p>
+  </div>
     <div class="col-sm-6 col-sm-offset-3">
         <form method="get">
-            <button type="submit" formaction="/find" class="btn">find</button>
+            <button type="submit" formaction="/create" class="btn">ask</button>
             <button type="submit" formaction="/next" class="btn">answer</button>
         </form>
     </div>
-
-
 </div>
-
 </body>
 </html>
