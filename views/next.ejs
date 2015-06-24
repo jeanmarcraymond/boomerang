@@ -16,19 +16,14 @@
 <body>
 <div class="container">
 
-    <div class="col-sm-6 col-sm-offset-3">
-        <p>answer</p>
         <!-- show any messages that come back with authentication -->
         <% if (message.length > 0) { %>
         <div class="alert alert-danger"><%= message %></div>
         <% } %>
 
-        <div class="row">
 
-            <div class="col-sm-6">
-                <div class="well">
                     <%if (boomerang && boomerang.users.responder && boomerang.users.responder.toString() == user._id.toString()){%>
-
+                    <div class="well">
                     <p>
                         <%= boomerang.description  %><br>
 
@@ -43,41 +38,37 @@
 
                         <input type="hidden" name="boomerangId" value="<%= boomerang._id %>"/>
 
-                        <button type="submit" formaction="/complete" class="btn">complete</button>
-                        <button type="submit" formaction="/toss" class="btn">toss</button>
+                        <button type="submit" formaction="/complete" class="btn select-btn"></button>
+                        <button type="submit" formaction="/toss" class="btn reject-btn"></button>
                     </form>
-
+                    </div>
 
                     <% } else if (boomerang) {%>
+                        <div class="well">
                         <p>
                             <%= boomerang.description  %><br>
                         </p>
-                        <form method="post">
-                            <input type="hidden" name="boomerangId" value="<%= boomerang._id %>"/>
-                            <button type="submit" formaction="/select" class="btn">select</button>
-                        </form>
-                        <form method="get">
-                            <button type="submit" formaction="/next" class="btn">next</button>
-                        </form>
+
+                        <div class="row">
+
+                                <form method="post">
+                                    <input type="hidden" name="boomerangId" value="<%= boomerang._id %>"/>
+                                    <button type="submit" formaction="/select" class="btn select-btn"></button>
+                                    <button type="submit" formaction="/next" class="btn reject-btn"></button>
+                                </form>
+                        </div>
+                        </div>
                     <% } else { %>
                           <p>
                             no more<br>
                         </p>
                     <%}%>
-                </div>
-
-            </div>
 
         </div>
-
-        <hr/>
-
-    </div>
-
     <div class="col-sm-6 col-sm-offset-3">
         <form method="get">
-            <button type="submit" formaction="/find" class="btn">find</button>
-            <button type="submit" formaction="/create" class="btn">ask</button>
+            <div class="col-xs-6"><button type="submit" formaction="/find" class="btn">find</button></div>
+            <div class="col-xs-6"><button type="submit" formaction="/create" class="btn">ask</button></div>
         </form>
     </div>
 

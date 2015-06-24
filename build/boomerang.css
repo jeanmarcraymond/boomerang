@@ -1,0 +1,11 @@
+.select-btn{
+    background: url('/static/images/round-yes.png');
+    height: 50px;
+    width: 50px;
+}
+
+.reject-btn{
+    background: url('/static/images/round-no.png');
+    height: 50px;
+    width: 50px;
+}
