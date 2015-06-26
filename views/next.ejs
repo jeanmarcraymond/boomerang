@@ -6,14 +6,38 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/build/jasny-bootstrap.css">
 
     <link rel="stylesheet" href="/build/media-queries.css">
     <link rel="stylesheet" href="/build/boomerang.css">
+
+    <script type="application/javascript" src="/build/jquery-1.11.3.min.js"></script>
+    <script type="application/javascript" src="/build/jasny-bootstrap.min.js"></script>
+
+
     <style>
         body        { padding-top:80px; }
     </style>
 </head>
 <body>
+
+<nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
+    <a class="navmenu-brand" href="#">Boomerang</a>
+    <ul class="nav navmenu-nav">
+        <li class="active"><a href="#">Answer</a></li>
+        <li><a href="/create">Create</a></li>
+        <li><a href="/find">Find</a></li>
+    </ul>
+</nav>
+<div class="navbar navbar-default navbar-fixed-top">
+    <span>
+        <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#myNavmenu" data-canvas="body">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </span>
+</div>
 <div class="container">
 
         <!-- show any messages that come back with authentication -->
@@ -52,7 +76,7 @@
 
                                 <form method="post">
                                     <input type="hidden" name="boomerangId" value="<%= boomerang._id %>"/>
-                                    <button type="submit" formaction="/select" class="btn select-btn"></button>
+                                    <button type="submit" formaction="/select" class="btn select-btn "></button>
                                     <button type="submit" formaction="/next" formmethod="get" class="btn reject-btn"></button>
                                 </form>
                         </div>
@@ -64,12 +88,6 @@
                     <%}%>
 
         </div>
-    <div class="col-sm-6 col-sm-offset-3">
-        <form method="get">
-            <div class="col-xs-6"><button type="submit" formaction="/find" class="btn">find</button></div>
-            <div class="col-xs-6"><button type="submit" formaction="/create" class="btn">ask</button></div>
-        </form>
-    </div>
 
 </div>
 </body>
