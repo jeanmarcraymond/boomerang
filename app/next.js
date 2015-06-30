@@ -24,20 +24,22 @@ module.exports = {
 
         Boomerang.findOne({'users.responder' : user._id, 'answered' : false}, function (err, boomerang) {
 
-            if (boomerang) {
+            if (boomerang) { // the user has one assigned already, show it
                 return done(boomerang);
             }
 
             var boomerangs = boomerangUserCache.get(user._id);
 
-            if (boomerangs){
+            if (boomerangs){ // the user has initialed the cache previously
+
                 var boomerang = boomerangs.pop();
 
-                if (boomerang){
-                    return done(boomerang);
+                if (boomerang) {
+                    return done(boomerang); // still one in the cache to pop
                 }
             }
 
+            // none cached, time to check in the db
             Boomerang.find({ 'answered' : {$ne: true}  }, function(err, boomerangs) {
 
                 // if there are any errors, return the error

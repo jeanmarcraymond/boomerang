@@ -58,14 +58,11 @@ module.exports = function(app, passport) {
     // =====================================
     app.get('/create', isLoggedIn, function(req, res) {
 
-        var boomerangs = view.execute(req, req.user, function(data){
-
             res.render('create.ejs', {
                 message: req.flash('createMessage'),
                 user : req.user, // get the user out of session and pass to template
-                boomerangs : data
+                boomerang: undefined
             });
-        });
 
     });
 
@@ -77,6 +74,7 @@ module.exports = function(app, passport) {
                 res.render('create.ejs', {
                     message: req.flash('createMessage'),
                     user : req.user, // get the user out of session and pass to template
+                    boomerang: newBoomerang
                 });
         });
     });
@@ -138,17 +136,10 @@ module.exports = function(app, passport) {
     // =====================================
     app.post('/complete', isLoggedIn, function(req, res) {
 
-        complete.execute(req, req.user, function(data){
+        complete.execute(req, req.user, function(){
 
-            next.execute(req, req.user, function(data){
-
-                res.render('next.ejs', {
-                    message: req.flash('viewMessage'),
-                    user : req.user, // get the user out of session and pass to template
-                    boomerang : data
-                });
-
-            });
+            res.writeHead(302, {'Location': '/next'});
+            res.end();
 
         });
 

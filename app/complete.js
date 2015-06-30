@@ -17,7 +17,7 @@ module.exports = {
             boomerang.answered = true;
             boomerang.save();
 
-            return done(boomerang);
+            return done();
         });
 
     }
