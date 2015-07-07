@@ -5,7 +5,8 @@ var select = require ('./select.js');
 var toss = require ('./toss.js');
 var complete = require ('./complete.js');
 var find = require ('./find.js');
-var getSelected = require('./get.js')
+var getSelected = require('./get.js');
+var tag = require ('./tag.js');
 
 module.exports = function(app, passport) {
 
@@ -159,6 +160,22 @@ module.exports = function(app, passport) {
             });
 
         });
+
+    });
+
+    // =====================================
+    // tagged SECTION =====================
+    // =====================================
+    app.get('/tagged', isLoggedIn, function(req, res) {
+
+        tag.getTagged(req, req.user, function(data) {
+            res.render('find.ejs', {
+                message: req.flash('viewMessage'),
+                user: req.user,
+                boomerangs: data
+            });
+        });
+
 
     });
 

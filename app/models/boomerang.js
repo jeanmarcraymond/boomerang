@@ -23,7 +23,7 @@ boomerangSchema.methods.hashParsedDescription = function(description){
     var parser = new Parser();
     parser.addRule(/\#[\S]+/ig, function(description) {
         // Return the tag minus the `#` and surround with html tags
-        return "<a class=\"tagLink\" href=\"/viewTag?tag="+description.substr(1) +"\">#" + description.substr(1) + "</a>";
+        return "<a class=\"tagLink\" href=\"/tagged?tag="+description.substr(1) +"\">#" + description.substr(1) + "</a>";
     });
 
     return parser.parse(description);

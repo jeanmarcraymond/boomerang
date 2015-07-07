@@ -1,7 +1,31 @@
 /**
  * Created by jmraymond on 2015-06-05.
  */
- exports.parse = function (description) {
+
+var Boomerang = require('./models/boomerang');
+
+module.exports = {
+
+    getTagged: function (request, user, done) {
+
+        var tag = request.param('tag');
+
+        Boomerang.find({ 'description_tags' : tag  }, function(err, boomerangs) {
+
+            // if there are any errors, return the error
+            if (err)
+                return done(err);
+
+
+
+            return done(boomerangs);
+
+        });
+
+
+    },
+
+    parse: function (description) {
 
         var tagsplit = description.split("#");
         var tags = new Array();
@@ -19,4 +43,5 @@
 
         return tags;
     }
+}
 
